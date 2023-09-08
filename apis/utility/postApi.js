@@ -3,7 +3,7 @@ import axios from "axios";
 export const postApi = async (url, data = null) => {
   try {
     const response = await axios.post(
-      `https://tan-charming-caterpillar.cyclic.cloud/${url}`,
+      `https://azure-jackrabbit-cape.cyclic.cloud/${url}`,
       data
     );
     return {
@@ -21,7 +21,7 @@ export const postApiAuth = async (url, data = null) => {
     const token =
       typeof window !== "undefined" ? localStorage?.getItem("token") : null;
     const response = await axios.post(
-      `https://tan-charming-caterpillar.cyclic.cloud/${url}`,
+      `https://azure-jackrabbit-cape.cyclic.cloud/${url}`,
       data,
       {
         headers: {

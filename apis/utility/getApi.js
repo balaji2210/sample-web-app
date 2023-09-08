@@ -5,7 +5,7 @@ export const getApi = async (url) => {
     const token =
       typeof window !== "undefined" ? localStorage?.getItem("token") : null;
     const response = await axios.get(
-      `https://tan-charming-caterpillar.cyclic.cloud/${url}`,
+      `https://azure-jackrabbit-cape.cyclic.cloud/${url}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
