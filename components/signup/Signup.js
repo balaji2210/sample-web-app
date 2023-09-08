@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./Signup.module.css";
 import { signUp } from "@/apis/signup";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [name, setName] = useState("");
