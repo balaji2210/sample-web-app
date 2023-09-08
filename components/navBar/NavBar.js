@@ -3,17 +3,28 @@ import Image from "next/image";
 import styles from "./NavBar.module.css";
 import { logout } from "@/apis/logOut";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
+  const router = useRouter();
+
   const userId =
     typeof window !== "undefined" && localStorage?.getItem("user_id")
       ? true
       : false;
 
   const handleLogout = async () => {
-    await logout();
     if (typeof window !== "undefined") {
       localStorage?.clear();
+    }
+    const response = await logout();
+    if (response?.success) {
+      router?.push("/");
+    } else {
+      toast?.error("Logout Error", {
+        theme: "dark",
+        autoClose: 2000,
+      });
     }
   };
 
@@ -84,8 +95,8 @@ const NavBar = () => {
                 <li className="nav-item">
                   <a
                     className="nav-link active text-white"
+                    style={{ cursor: "pointer" }}
                     onClick={handleLogout}
-                    href="/"
                   >
                     Logout
                   </a>
