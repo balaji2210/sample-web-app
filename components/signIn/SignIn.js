@@ -26,8 +26,10 @@ const SignIn = () => {
         position: "top-right",
       });
       localStorage?.setItem("token", result?.data?.data?.token);
-      getUserData();
-      router?.push(`/blog/create`);
+      const response = await getUserData();
+      if (response?.success) {
+        router?.push(`/blog/create`);
+      }
     } else {
       toast.error("Error", {
         theme: "dark",

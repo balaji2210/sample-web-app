@@ -8,4 +8,5 @@ export const getUserData = async () => {
     localStorage?.setItem("userType", response?.data?.data?.userType);
     localStorage?.setItem("user_id", response?.data?.data?._id);
   }
+  return response;
 };
