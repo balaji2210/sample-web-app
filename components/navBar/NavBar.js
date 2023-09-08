@@ -1,8 +1,20 @@
 import Image from "next/image";
 
 import styles from "./NavBar.module.css";
+import { logout } from "@/apis/logOut";
+import { useRouter } from "next/router";
 
 const NavBar = () => {
+  const userId =
+    typeof window !== "undefined" && localStorage?.getItem("user_id")
+      ? true
+      : false;
+
+  const handleLogout = async () => {
+    await logout();
+    localStorage?.clear();
+  };
+
   return (
     <div className={styles.nav}>
       <nav className={`navbar navbar-expand-lg container`}>
@@ -46,6 +58,37 @@ const NavBar = () => {
                   Blog
                 </a>
               </li>
+              {userId ? (
+                <li className="nav-item">
+                  <a className="nav-link active text-white" href="/blog/create">
+                    Create
+                  </a>
+                </li>
+              ) : null}
+              {!userId ? (
+                <>
+                  <li className="nav-item">
+                    <a className="nav-link active text-white" href="/signup">
+                      Signup
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link active text-white" href="/signin">
+                      SignIn
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <li className="nav-item">
+                  <a
+                    className="nav-link active text-white"
+                    onClick={handleLogout}
+                    href="/"
+                  >
+                    Logout
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>
