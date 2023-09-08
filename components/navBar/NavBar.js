@@ -12,7 +12,9 @@ const NavBar = () => {
 
   const handleLogout = async () => {
     await logout();
-    localStorage?.clear();
+    if (typeof window !== "undefined") {
+      localStorage?.clear();
+    }
   };
 
   return (
